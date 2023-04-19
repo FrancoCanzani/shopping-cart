@@ -16,11 +16,11 @@ const SubHeader = () => {
         Buy now and get 10% off // Promo code:{' '}
         <button
           onClick={handleClipboard}
-          className='bg-white p-1 text-yellow-400 rounded-md animate-pulse'
+          className='bg-white p-1 uppercase text-yellow-400 rounded-md animate-pulse'
         >
           {copied ? (
             <>
-              <span style={{ color: 'black' }}>Copied!</span>
+              <span style={{ color: 'grey' }}>Copied!</span>
             </>
           ) : (
             promoCode

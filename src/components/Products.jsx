@@ -4,7 +4,9 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import { v4 as uuidv4 } from 'uuid';
 import fetchProducts from '../fetches/fetchProducts';
+import ProductCard from './ProductCard';
 
 export default function Products() {
   const queryClient = useQueryClient();
@@ -26,7 +28,7 @@ export default function Products() {
   return (
     <ul>
       {data.map((product) => (
-        <li key={product.id}>{product.title}</li>
+        <ProductCard key={uuidv4()} product={product} />
       ))}
     </ul>
   );
