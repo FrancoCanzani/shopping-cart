@@ -11,12 +11,12 @@ const SubHeader = () => {
   };
 
   return (
-    <div className='shadow-lg uppercase font-black p-2 text-sm flex items-center justify-center bg-slate-200'>
+    <div className='flex items-center justify-center bg-slate-200 p-2 text-sm font-black uppercase shadow-lg'>
       <p>
         Buy now and get 10% off // Promo code:{' '}
         <button
           onClick={handleClipboard}
-          className='bg-white p-1 uppercase text-yellow-400 rounded-md animate-pulse'
+          className='animate-pulse rounded-md bg-white p-1 uppercase text-yellow-400'
         >
           {copied ? (
             <>
