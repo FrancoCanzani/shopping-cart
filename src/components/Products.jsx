@@ -26,10 +26,10 @@ export default function Products() {
 
   // We can assume by this point that `isSuccess === true`
   return (
-    <ul>
+    <div className='flex flex-wrap justify-center'>
       {data.map((product) => (
         <ProductCard key={uuidv4()} product={product} />
       ))}
-    </ul>
+    </div>
   );
 }
