@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import fetchProducts from '../fetches/fetchProducts';
 import ProductCard from './ProductCard';
 
-export default function Products() {
+export default function Products({ cartItems, setCartItems }) {
   const queryClient = useQueryClient();
 
   const { isLoading, isError, data, error } = useQuery({
@@ -17,7 +17,11 @@ export default function Products() {
   });
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return (
+      <span className='mt-32 flex animate-bounce items-center justify-center text-3xl uppercase'>
+        Loading...
+      </span>
+    );
   }
 
   if (isError) {
@@ -28,7 +32,12 @@ export default function Products() {
   return (
     <div className='flex flex-wrap justify-center'>
       {data.map((product) => (
-        <ProductCard key={uuidv4()} product={product} />
+        <ProductCard
+          key={uuidv4()}
+          product={product}
+          setCartItems={setCartItems}
+          cartItems={cartItems}
+        />
       ))}
     </div>
   );

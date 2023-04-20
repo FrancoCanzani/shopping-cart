@@ -1,10 +1,19 @@
 import { useState } from 'react';
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, setCartItems, cartItems }) {
   const [shippingDays] = useState(Math.floor(Math.random() * 12) + 2);
 
+  const addToCart = (product) => {
+    setCartItems([...cartItems, product]);
+  };
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    console.log(cartItems);
+  };
+
   return (
-    <div className='relative m-4 h-96 w-80 rounded-lg border-2 border-green-800 p-6'>
+    <div className='relative m-4 h-96 w-80 rounded-lg border-2 border-blue-200 p-6'>
       <div className='flex min-w-full items-center justify-center'>
         <img src={product.image} alt='Product picture' className='h-32' />
       </div>
@@ -24,7 +33,10 @@ export default function ProductCard({ product }) {
           <span className='mr-4 block w-20 rounded-sm bg-teal-700 p-1 text-center text-xl font-semibold text-white shadow-lg shadow-slate-300'>
             ${product.price}
           </span>
-          <button className='rounded-sm bg-amber-500 p-1 text-center text-xl font-semibold uppercase text-white shadow-lg shadow-slate-300 hover:bg-amber-300 active:translate-y-1'>
+          <button
+            onClick={handleAddToCart}
+            className='rounded-sm bg-amber-500 p-1 text-center text-xl font-semibold uppercase text-white shadow-lg shadow-slate-300 hover:bg-amber-300 active:translate-y-1'
+          >
             Add to cart
           </button>
         </div>
