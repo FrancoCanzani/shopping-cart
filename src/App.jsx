@@ -22,7 +22,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Header></Header>
+        <Header cartItems={cartItems} />
         <SubHeader />
         <Routes>
           <Route
