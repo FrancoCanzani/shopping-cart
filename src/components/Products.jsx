@@ -19,7 +19,7 @@ export default function Products({ cartItems, setCartItems }) {
   if (isLoading) {
     return (
       <span className='mt-32 flex animate-bounce items-center justify-center text-3xl uppercase'>
-        Loading...
+        💫
       </span>
     );
   }
