@@ -4,6 +4,15 @@ import { v4 as uuidv4 } from 'uuid';
 export default function Cart({ cartItems, setCartItems }) {
   const [totalPrice, setTotalPrice] = useState(null);
 
+  function handleRemoveItem(item) {
+    const indexToRemove = cartItems.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+    const newCartItems = [...cartItems];
+    newCartItems.splice(indexToRemove, 1);
+    return setCartItems(newCartItems);
+  }
+
   useEffect(() => {
     let totalPriceToPay = 0;
     for (let i = 0; i < cartItems?.length; i++) {
@@ -21,23 +30,23 @@ export default function Cart({ cartItems, setCartItems }) {
   }
 
   return (
-    <div className='m-6 rounded-3xl bg-slate-200 text-center'>
+    <div className='m-6 rounded-lg bg-slate-100 p-2 text-center'>
       {cartItems.map((item) => (
         <div className='grid grid-cols-7 text-left' key={uuidv4()}>
-          <div className='col-span-6 mx-6 my-2 rounded-md border-2 border-yellow-200 bg-blue-900 p-2 font-bold uppercase text-white'>
+          <div className='border-grey-200 col-span-6 my-1 ml-6 rounded-l-md border-2 bg-white p-2 font-mono text-sm font-bold uppercase'>
             {item.title} - ${item.price}
           </div>
-          <div className='items flex justify-center p-1'>
-            <button className='rounded-l-xl bg-green-400 p-2 font-black active:-translate-x-1'>
-              +
-            </button>
-            <button className='rounded-r-xl bg-red-500 p-2 font-black active:translate-x-1'>
-              -
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              handleRemoveItem(item);
+            }}
+            className='border-grey-200 my-1 rounded-r-xl bg-red-600 font-mono text-sm font-black uppercase text-white active:translate-x-1'
+          >
+            Take out
+          </button>
         </div>
       ))}
-      <p>Total is: ${totalPrice?.toFixed(2)}</p>
+      <p className=''>Total: ${totalPrice?.toFixed(2)}</p>
       <button className='m-8 rounded-xl bg-green-300 p-2 font-black uppercase'>
         Pay now
       </button>
